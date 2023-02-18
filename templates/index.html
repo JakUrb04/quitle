@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Quitle</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<link rel="icon" href="{{ url_for('static', filename='kq.png') }}" type="image/icon type">
+</head>
+<body>
+    <div class="box">
+        <h1>Quitle</h1>
+        <form action="{{ url_for('predict')}}" method="post">
+            <input type="text" name="title_maker" placeholder="Wpisz tytuł quizu">
+            <input type="submit" name="" value="Predict">
+        </form>
+        <p>Ilość ZZS: <span class="count">0</span></p>
+    </div>
+    <div class="hint">
+      <img src="{{ url_for('static', filename='idea.svg') }}" alt="idea" width="45" height="45">
+  </div>
+  <div class="hinter">
+    <p>Pamiętaj, że model podaje tylko przybliżone wyniki i nie muszą być one zgodne z prawdą.</p> 
+      <p>Aby dowiedzieć się więcej, kliknij <a href="">tutaj</a>.
+    </p>
+  </div>
+  <div class="prediction_title">
+    <h3>{{ prediction_text }}</h3>
+  </div>
+    <script>
+        const input = document.querySelector('input[type="text"]');
+        const count = document.querySelector('.count');
+        input.addEventListener('input', function() {
+          count.textContent = input.value.length;
+        });
+      </script>
+</body>
+</html>
