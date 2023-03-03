@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 import pickle
 
-
 app = Flask(__name__)
 model = pickle.load(open("model.pkl","rb"))
 vectorizer = pickle.load(open("vect.pkl","rb"))
