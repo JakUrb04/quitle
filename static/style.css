@@ -98,7 +98,7 @@ p .count
 {
   position: absolute;
   top: 50%;
-  left: 30%;
+  left: 23%;
   transform: translate((-50%,-50%));
 }
 h3
@@ -107,4 +107,9 @@ font-family: sans-serif;
 padding: 0;
 color: #fff;
 font-size: 24px;
+}
+#message
+{
+  color: red;
+  font-weight: bold;
 }

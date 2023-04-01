@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <title>About Quitle</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="icon" href="kq.png" type="image/icon type">
+    </head>
+    <body>
+        <header>
+            <a href="site.html" class="logo">Quitle</a>
+            <ul>
+                <li><a href="https://quitle.onrender.com/" class="active">Home</a></li>
+                <li><a href="#header2">About</a></li>
+                <li><a href="#goodtoknow">Good to know</a></li>
+            </ul>
+        </header>
+        <section>
+            <img src="stars.png" id="stars">
+            <img src="moon.png" id="moon">
+            <img src="mountains_behind.png" id="mountains_behind">
+            <h2 id="text">Poznajcie Quitle</h2>
+            <a href="#sec" id="btn">Scroll down</a>
+            <img src="mountains_front.png" id="mountains_front">
+        </section>
+
+        <div class="sec" id="sec">
+            <h2>Czym jest Quitle?</h2>
+            <p style="margin-bottom: 50px;"></p>
+            <img src="lupka.png" id="lupa"> <!--Width = 1,45*height-->
+            <p id="intro" style="margin-bottom: 40px;">
+                Quitle to przede wszystkim model uczenia maszynowego <br>i tak jak każdy model popełnia błędy.</p>
+            <p style="margin-bottom: 70px;" id="cytat">
+                "Wszystkie modele są złe, ale niektóre z nich są użyteczne" ~ George E.P. Box</p>
+                <p style="margin-bottom: 300px;" id="tekst1">
+                    Dlatego każdy 'wypluty' wynik należy traktować przez pół. To ma być tylko sugestia, a nie ostateczny werdykt. 
+                    <br>
+                    Niemniej jednak, z biegiem czasu Quitle będzie coraz dokładniejszy... Dlaczego?
+                    <br>
+                    <br>
+                    Bo tak jak wszystkie modele bazuje na danych, których przybywa z każdym dniem, tygodniem, czy miesiącem... Mało tego!
+                    <br>
+                    Poza samą ilością danych, jego dokładność zależy od wielu innych czynników, ale szczegóły techniczne poznacie niżej.
+                    <br>
+                    I to w zasadzie tyle słowem wstępu. Zapraszam do dalszej (krótkiej) lektury ;)
+                </p>
+            </p>
+            <h2 id="header2" style="margin-bottom: 50px;">Jak to się dzieje, że Quitle przewiduje wyniki? Czyli szybki wstęp do uczenia maszynowego</h2>
+            <p>
+                Uczenie maszynowe to podzbiór sztucznej inteligencji, który w najprostszych słowach, koncentruje się na tym, 
+                aby nauczyć maszyny (komputery) konkretnych zachowań lub zdolności do przewidywania pewnych wyników. 
+                Oczywiście stoi za tym zaawansowana matematyka, ale obecnie 'brudną robotę' robią języki programowania.
+                <br>
+                <br>
+                Quitle <strong>prawie w całości</strong> został napisany w języku Python 3.10.2, głównie z wykorzystaniem bibliotek do uczenia maszynowego, 
+                takich jak <a href="https://scikit-learn.org/stable/" style="color: inherit;">scikit-learn</a>. Za stronę serwerową odpowiada biblioteka <a href="https://flask.palletsprojects.com/en/2.2.x/" style="color: inherit;">flask</a>. 
+                Celowo zaznaczyłem 'prawie w całości', ponieważ żeby wszystko umieścić w internecie, nie mogło zabraknąć w tym projekcie typowego html'a, css'a i javascriptu - niestety. To trzej muszkieterowie, którzy odpowiadają za cały interfejs i stronę funkcjonalno-wizualną witryny, którą właśnie widzicie. Nie jest to powiedzmy 'moja dziedzina', ale z tutorialami na jutubach udało się coś tam zrobić - i tu pierwsza ważna uwaga - strona nie skaluje się zbyt dobrze, dlatego zaleca się, aby <strong>korzystać z Quitle na komputerze/laptopie</strong>.
+            </p>
+            <br>
+            <br>
+            <h3>Rozumienie tekstu - podejście 'Bag of Words' i inne zagadnienia techniczne </h3>
+            <p>Aby Quitle (komputer) rozumiał tytuł quizu (dane w postaci tekstowej), to musi jakoś przetłumaczyć je na swój język. W tym celu, aktualna wersja Quitle korzysta z techniki 'Bag of Words' (W skrócie: BoW).</p>
+            <br>
+            <p style="margin-bottom: 30px;">BoW to podejście, które tratkuje tekst jako zbiór słów bez uwzględniania kontekstu i kolejności. Oznacza to, że powstałe wektory przechowują wszystkie słowa, jakie były wykorzystane w tytułach quizów oraz liczy ich wystąpienia. Brzmi to dość skomplikowanie, dlatego warto pokazać to na przykładzie pseudokodu:</p>
+            <div class="code">
+                <span class="keyword">from </span><span>sklearn.feature_extraction.text </span><span class="keyword">import </span><span>CountVectorizer </span>
+                
+                <span class="comment"># Stwórzmy zbiór 3 pseudozdań</span>
+                <span>zdania = [<span class="string">"Ala ma kota"</span>,<span class="string">"Kota nie ma ala"</span>, <span class="string">"Ala Ala Ala nie"</span>] </span>
+                <span class="comment"># W tych pseudozdaniach występują w sumie <strong>4 różne słowa</strong>, więc długość naszych wektorów (worków) też będzie równa 4</span>
+                <span class="comment"># Te słowa to: ala, kota, ma, nie (kolejność alfabetyczna)</span>
+                <span>BoW = CountVectorizer(analyzer=<span class="string">"word"</span>).fit(zdania)</span><span class="comment"> Pakujemy zdania do worków</span>
+                <span>vec = BoW.transform(zdania)</span>
+                <span>vec.toarray()</span>
+                
+                <span class="comment">Wynik:</span>
+                <span>array([[1, 1, 1, 0], </span><span class="comment"># Ala-1, kota-1, ma-1, nie-0</span>
+                <span>          [1, 1, 1, 1], </span><span class="comment"># Ala-1, kota-1, ma-1, nie-1</span>
+                <span>          [3, 0, 0, 1]]) </span><span class="comment"># Ala-3, kota-0, ma-0, nie-1</span> 
+            </div>
+            <p>Oczywiście, w przypadku tytułów wektory te są dużo, DUŻO większe, ale zasada działania jest identyczna. To doskonale obrazuje fakt, że Quitle nie rozumie (jeszcze) kontekstu, a jedynie liczy wystąpienia słów w tytułach, dlatego możemy wpisać mu dowolne i losowe słowa, a on i tak wypluje jakiś wynik.</p>
+            <br>
+            <br>
+            <h3>No dobrze, ale co dalej?...</h3>
+            <p style="margin-bottom: 30px;">Do modelu trafiają przygotowane (przez inny mini-program) dane, zawierające tylko dwie kolumny: tytuł i ilość kliknięć w link. Tytuły wrzucamy do 'worków', gdzie tłumaczymy je na język komputera. W efekcie tego powstaje całkiem pokaźny zbiór takich 'worków', który w ścisłym ujęciu jest macierzą. Teraz możemy zabrać się za analizę statystyczną - do tego celu wykorzystuję regresję logistyczną z pakietu scikit-learn. Istnieją różne rodzaje regresji, ale przytoczę tu ogólną definicję: <br><br>Regresja to metoda statystyczna pozwalająca na opisanie współzmienności kilku zmiennych przez dopasowanie do nich funkcji. Umożliwia przewidywanie nieznanych wartości jednych wielkości na podstawie znanych wartości innych. <br><br>Dlaczego zdecydowałem się akurat na model regresji logistycznej? - ponieważ <strong>na ten moment</strong> najdokładniejsze predykcje dostaję właśnie dla tego modelu statystycznego. Oczywiście, w bliżej nieokreślonej przyszłości wykorzystywany model może się zmienić, ponieważ prace nad dokładnością Quitle są cały czas w toku.</p>
+            <h3 id="goodtoknow">Co jeszcze warto wiedzieć?</h3>
+            <li>Analiza uwzględnia tylko dwa parametry: tytuł i liczbę kliknięć w link, podczas gdy na klikalność składa się kilka innych parametrów, takich jak: godzina wystawienia posta, zdjęcie itd.</li>
+            <br>
+            <li>Quitle (teoretycznie) najlepiej radzi sobie z quizami cyklicznymi, ponieważ godziny publikacji są raczej stałe, a zdjęcia takie same, więc sam tytuł jest w tym przypadku dobrym wyznacznikiem</li>
+            <br>
+            <li>Quitle jest wytrenowany na danych z fp Kocham Quizy, dlatego wszelkie przewidywania są właściwe jedynie dla strony Kocham Quizy</li>
+            <br>
+            <li>Posty żyją swoim życiem, dlatego konieczne było wprowadzenie założenia, że przewidywane wyniki to rezulaty po 24 godzinach od wystawienia posta. Przy codziennej rotacji jest to słuszne założenie, natomiast niektóre 'złote strzały' i chętnie udostępniane posty mogą poszerzać swoje zasięgi nawet grubo po tym czasie</li>
+            <br>
+            <li>Quitle działa wolno, ponieważ wisi na darmowym hostingu <a href="https://render.com/" style="color: inherit;">render</a></li>
+            <br>
+            <li style="margin-bottom: 30px;">Kod źródłowy można podejrzeć <a href="https://github.com/JakUrb04/quitle" style="color: inherit;">tutaj</a></li>
+            <h3>Jak korzystać z Quitle?</h3>
+            <li>Najlepiej sprawdzić kilka skrajnie różnych tytułów dla danego quizu, żeby zobaczyć, które słowa to tzw. game changer'y</li>
+            <br>
+            <li>Zgodnie z zaleceniem, w przypadku gdy ilość zzs będzie większa niż 80, Qutile grzecznie zwróci uwagę, że ten tytuł może być ciut za długi</li>
+
+        </div>
+        <script>
+            let stars = document.getElementById('stars');
+            let moon = document.getElementById('moon');
+            let mountains_behind = document.getElementById('mountains_behind');
+            let mountains_front = document.getElementById('mountains_front');
+            let text = document.getElementById('text');
+            let btn = document.getElementById('btn');
+            let header = document.querySelector('header');
+
+            window.addEventListener('scroll',function()
+            {
+                let value = window.scrollY;
+                stars.style.left = value*0.25 + 'px';
+                moon.style.top = value*1.05 + 'px';
+                mountains_behind.style.top = value*0.5 + 'px';
+                mountains_front.style.top = value*0 + 'px';
+                text.style.marginRight = value*3.3 + 'px';
+                text.style.marginTop = value*1 + 'px';
+                btn.style.marginTop = value*1.5 + 'px';
+                header.style.top = value*0 + 'px';
+            })
+        </script>
+    </body>
+</html>
