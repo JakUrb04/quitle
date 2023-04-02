@@ -144,6 +144,8 @@ section img#mountains_front
     position: relative;
     left: 200px;
     bottom: 150px;
+    width: 525px;
+    height: 520px;
 }
 #intro
 {
@@ -174,14 +176,14 @@ h3
 }
 .code {
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1em;
-    line-height: 1.5;
-    border: 10px solid black;
-    padding: 10px;
+    font-size: 0.9em;
+    line-height: 1.2;
+    border: 8px solid black;
+    padding: 8px;
     white-space: pre-wrap;
     border-radius: 20px;
     background-color: #ecebe4;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .code span.keyword {
