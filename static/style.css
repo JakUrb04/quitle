@@ -15,13 +15,11 @@ h1
 .box
 {
   position: absolute;
-  /*top: 50%*/
-  /*lef: 50%*/
-  /*transform: translate(-50, -50)*/
   top: 28%;
-  left: 55%;
-  width: 1000px;
-  transform: translate(-54%,-60%);
+  left: 50%;
+  width: 90%;
+  max-width: 1000px;
+  transform: translate(-50%,-60%);
 }
 a{
   color:inherit;
@@ -29,17 +27,16 @@ a{
 }
 input
 {
-  position: relative;
   display: inline-block;
   font-size: 20px;
   box-sizing: border-box;
   transition: .5s;    
+  position: relative;
 }
 input[type="text"]
 {
   background: #fff;
-  /*width: 340px;*/
-  width: 800px;
+  width: 80%; /*800px*/
   height: 50px;
   border: none;
   outline: none;
@@ -49,11 +46,10 @@ input[type="text"]
 }
 input[type="submit"]
 {
-  position: relative;
   left: -5px;
   border-radius: 0 25px 25px 0;
   height: 50px;
-  width: 150px;
+  width: 15%;
   border: none;
   outline: none;
   cursor: pointer;
@@ -78,22 +74,29 @@ p .count
   margin-left: 5px;
   font-family: sans-serif;
 }
-.hint
-{
+
+.hinter {
   position: absolute;
-  top: 85%;
-  left: 10%;
-  transform: translate(-100%,-38%);
+  bottom: 10%;
+  left: 5%;
+  display: flex;
+  align-items: center;
 }
-.hinter
-{
-  position: absolute;
+
+.hinter img {
+  margin-right: 10px;
+  width: 45px;
+  height: 45px;
+}
+
+.hinter p {
   font-family: sans-serif;
-  top: 81%;
-  left: 25%;
-  transform: translate(-60%,-8%);
-  margin-left: 230px;
+  color: #fff;
+  font-size: 18px;
+  margin-left: 0.5px;
+  display: inline-block;
 }
+
 .prediction_title
 {
   position: absolute;
@@ -113,3 +116,102 @@ font-size: 24px;
   color: red;
   font-weight: bold;
 }
+
+.warning {
+  color: red;
+}
+
+/*Skalowanie*/
+
+@media (max-width: 850px) {
+
+  .prediction_title {
+    left: 15%;
+  }
+  h3 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 760px) {
+  
+  .box {
+    top: 22%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 90%;
+    max-width: 600px;
+  }
+  
+  input[type="text"] {
+    width: 70%;
+    max-width: 300px;
+  }
+  
+  input[type="submit"] {
+    width: 30%;
+    max-width: 100px;
+  }
+  
+  h1 {
+    font-size: 28px;
+  }
+  .prediction_title {
+    left: 5%;
+  }
+  h3 {
+    font-size: 12px;
+  }
+  
+  p {
+    font-size: 16px;
+  }
+  .hinter img {
+    width: 35px;
+    height: 35px;
+  }
+  .hinter p {
+    font-size: 10px;
+  }
+  }
+  
+@media (max-width: 400px) {
+  
+  .box {
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 90%;
+    max-width: 400px;
+  }
+  
+  input[type="text"] {
+    width: 90%;
+    max-width: 250px;
+  }
+  
+  input[type="submit"] {
+    width: 30%;
+    max-width: 80px;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+    .prediction_title {
+      left: 5%;
+  }
+  h3 {
+    font-size: 11px;
+  }
+  p {
+    font-size: 14px;
+  }
+  .hinter img {
+    width: 30px;
+    height: 30px;
+  }
+  .hinter p {
+    font-size: 8px;
+  }
+  }

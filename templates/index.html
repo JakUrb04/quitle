@@ -2,6 +2,7 @@
 <html lang="pl">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quitle</title>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 <link rel="icon" href="{{ url_for('static', filename='kq.png') }}" type="image/icon type">
@@ -15,17 +16,13 @@
         </form>
         <p>Ilość ZZS: <span class="count">0</span><span id="message"></span></p>
     </div>
-    <div class="hint">
-      <img src="{{ url_for('static', filename='idea.svg') }}" alt="idea" width="45" height="45">
-  </div>
-  <div class="hinter">
-    <p>
-      Pamiętaj, że model podaje tylko przybliżone wyniki i nie muszą być one zgodne z prawdą.</p> 
-      <p>Aby dowiedzieć się więcej, kliknij <a href="{{ url_for('static', filename='site.html')}}"><strong>tutaj</strong></a>.
-    </p>
-  </div>
   <div class="prediction_title">
     <h3>{{ prediction_text }}</h3>
+  </div>
+  <div class="hinter">
+    <img id="lightbuble" src="{{ url_for('static', filename='idea.svg') }}" alt="idea">
+    <p>Pamiętaj, że model podaje tylko przybliżone wyniki i nie muszą być one zgodne z prawdą.
+    Aby dowiedzieć się więcej, kliknij <a href="{{ url_for('static', filename='site.html')}}"><strong>tutaj</strong></a>.</p>
   </div>
     <script>
         const input = document.querySelector('input[type="text"]');
@@ -38,9 +35,11 @@
           if (input.value.length > 80) {
             form.setAttribute('onsubmit','return true;');
             message.textContent = '     Uwaga, ten tytuł może być zbyt długi!';
+            count.classList.add('warning')
           } else {
             form.removeAttribute('onsubmit');
             message.textContent = '';
+            count.classList.remove('warning')
           } });
       </script>
 </body>

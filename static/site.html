@@ -6,6 +6,15 @@
         <link rel="icon" href="kq.png" type="image/icon type">
     </head>
     <body>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <h2>Ostrzeżenie</h2>
+                <p>Ta strona nie jest skalowalna, dlatego do jej przeglądania zaleca się korzystanie z komputera/laptopa z formatem 16:9.</p>
+                <button id="acceptBtn">Akceptuję</button>
+            </div>
+        </div>
+        
         <header>
             <a href="site.html" class="logo">Quitle</a>
             <ul>
@@ -26,7 +35,7 @@
         <div class="sec" id="sec">
             <h2>Czym jest Quitle?</h2>
             <p style="margin-bottom: 50px;"></p>
-            <img src="lupka.png" id="lupa"> <!--Width = 1,45*height-->
+            <img src="lupka.png" id="lupa"> <!--616 × 610 px-->
             <p id="intro" style="margin-bottom: 40px;">
                 Quitle to przede wszystkim model uczenia maszynowego <br>i tak jak każdy model popełnia błędy.</p>
             <p style="margin-bottom: 70px;" id="cytat">
@@ -100,6 +109,7 @@
             <li>Zgodnie z zaleceniem, w przypadku gdy ilość zzs będzie większa niż 80, Qutile grzecznie zwróci uwagę, że ten tytuł może być ciut za długi</li>
 
         </div>
+
         <script>
             let stars = document.getElementById('stars');
             let moon = document.getElementById('moon');
@@ -121,6 +131,18 @@
                 btn.style.marginTop = value*1.5 + 'px';
                 header.style.top = value*0 + 'px';
             })
-        </script>
+            </script>
+            <script>
+                var modal = document.getElementById('myModal');
+                var acceptBtn = document.getElementById('acceptBtn');
+
+                window.onload = function() {
+                    modal.style.display = 'block';
+                }
+
+                acceptBtn.onclick = function() {
+                    modal.style.display = 'none';
+                }
+            </script>
     </body>
 </html>
